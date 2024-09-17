@@ -7,19 +7,21 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [taskName, setTaskName] = useState('');
   const [taskDate, setTaskDate] = useState('');
-  const [taskTime, setTaskTime] = useState('');
+  const [taskEndingDate, setTaskEndingDate] = useState('');
+  const [taskStartingTime, setTaskStartingTime] = useState('');
+  const [taskEndingTime, setTaskEndingTime] = useState('');
   const [editingIndex, setEditingIndex] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleAddTask = () => {
     if (editingIndex !== null) {
       const updatedTasks = tasks.map((task, index) =>
-        index === editingIndex ? { name: taskName, date: taskDate, time: taskTime } : task
+        index === editingIndex ? { name: taskName, date: taskDate, endingDate: taskEndingDate, start_time: taskStartingTime, end_time: taskEndingTime } : task
       );
       setTasks(updatedTasks);
       setEditingIndex(null);
     } else {
-      setTasks([...tasks, { name: taskName, date: taskDate, time: taskTime }])
+      setTasks([...tasks, { name: taskName, date: taskDate, endingDate: taskEndingDate, start_time: taskStartingTime, end_time: taskEndingTime }])
     }
     resetForm();
     setIsModalOpen(false);
@@ -28,7 +30,9 @@ function App() {
   const handleEditTask = (index) => {
     setTaskName(tasks[index].name);
     setTaskDate(tasks[index].date);
-    setTaskTime(tasks[index].time);
+    setTaskEndingDate(tasks[index].endingDate);
+    setTaskStartingTime(tasks[index].start_time);
+    setTaskEndingTime(tasks[index].end_time);
     setEditingIndex(index);
     setIsModalOpen(true);
   };
@@ -40,7 +44,8 @@ function App() {
   const resetForm = () => {
     setTaskName('');
     setTaskDate('');
-    setTaskTime('');
+    setTaskStartingTime('');
+    setTaskEndingTime('');
   };
 
 
@@ -57,7 +62,7 @@ function App() {
           <ul>
             {tasks.map((task, index) => (
               <li key={index}>
-                {task.name} - {task.date} - {task.time}
+                {task.name} - {task.date} - {task.start_time} - {task.end_time}
                 <button onClick={() => handleEditTask(index)}>Edit Task/Event</button>
                 <button onClick={() => handleDeleteTask(index)}>Delete Task/Event</button>
               </li>
@@ -75,7 +80,9 @@ function App() {
               <h2>{editingIndex !== null ? 'Edit task' : 'Add Task'}</h2>
               <input type='text' placeholder='Task name' value={taskName} onChange={(e) => setTaskName(e.target.value)} />
               <input type="date" value={taskDate} onChange={(e) => setTaskDate(e.target.value)}/>
-              <input type='time' value={taskTime} onChange={(e) => setTaskTime(e.target.value)}/>
+              <input type="date" value={taskEndingDate} onChange={(e) => setTaskEndingDate(e.target.value)} /> 
+              <input type='time' value={taskStartingTime} onChange={(e) => setTaskStartingTime(e.target.value)}/>
+              <input type='time' value={taskEndingTime} onChange={(e) => setTaskEndingTime(e.target.value)}/>
               <button onClick={handleAddTask}>
                 {editingIndex !== null ? 'Update Task' : 'Add Task'}
               </button>

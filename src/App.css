@@ -16,12 +16,24 @@
   /* Additional styling for Task-layout can go here */
 }
 
-.buttons {
-  position: absolute; /* Positioning buttons absolutely */
-  top: 10px; /* Adjust as needed */
-  right: 10px; /* Adjust as needed */
-  border: 5px solid red; /* Change color as needed */
-  /* Additional styling for buttons can go here */
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0); /* Semi-transparent background */
+  z-index: 1000; /* Ensure it appears above other content */
 }
 
-/* Add any other styles you need for buttons or other elements */
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 400px; /* Set a width for the modal */
+  max-width: 90%; /* Responsive width */
+}
