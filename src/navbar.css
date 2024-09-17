@@ -1,0 +1,27 @@
+.navbar {
+    display: flex;
+    justify-content: center; /* Center the navbar */
+    align-items: center; /* Center items vertically */
+    background-color: #f0f0f0; /* Background color */
+    border-radius: 15px; /* Curved corners */
+    padding: 10px 20px; /* Padding around the navbar */
+    margin: 20px auto; /* Center the navbar horizontally */
+    width: fit-content; /* Adjust width to content */
+    border: 1px solid #ccc; /* Border for the rectangle */
+}
+
+.navbar a {
+    text-decoration: none; /* Remove underline from links */
+    padding: 10px 15px; /* Padding for links */
+    position: relative; /* Position for pseudo-element */
+}
+
+.navbar a:not(:last-child)::after {
+    content: ""; /* Create a line */
+    position: absolute;
+    right: 0; /* Position to the right of the link */
+    top: 10%; /* Position from the top */
+    width: 1px; /* Width of the line */
+    height: 80%; /* Height of the line */
+    background-color: #ccc; /* Color of the line */
+}
