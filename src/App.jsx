@@ -14,14 +14,29 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleAddTask = () => {
+    const today = new Date().toISOString().split('T')[0];
+    const defaultTask = {
+      name: 'Unamed Task/Event',
+      date: today,
+      endingDate: null,
+      start_time: '12:00',
+      end_time: '13:00'
+    };
+    const newTask = {
+      name: taskName || defaultTask.name,
+      date: taskDate || defaultTask.date,
+      endingDate: taskEndingDate || defaultTask.endingDate,
+      start_time: taskStartingTime || defaultTask.start_time,
+      end_time: taskEndingTime || defaultTask.endingDate
+    };
     if (editingIndex !== null) {
       const updatedTasks = tasks.map((task, index) =>
-        index === editingIndex ? { name: taskName, date: taskDate, endingDate: taskEndingDate, start_time: taskStartingTime, end_time: taskEndingTime } : task
+        index === editingIndex ? newTask : task
       );
       setTasks(updatedTasks);
       setEditingIndex(null);
     } else {
-      setTasks([...tasks, { name: taskName, date: taskDate, endingDate: taskEndingDate, start_time: taskStartingTime, end_time: taskEndingTime }])
+      setTasks([...tasks, newTask])
     }
     resetForm();
     setIsModalOpen(false);
